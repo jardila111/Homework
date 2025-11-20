@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="fa-events-icons-ready"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Website Development Assignment 4</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./Instructions_files/css">
+  <link rel="stylesheet" href="./Instructions_files/style.css">
+  <link rel="stylesheet" href="./Instruction_files/syntax.css">
+  <script src="./Instructions_files/c63611dac2.js"></script>
+  <link href="./Instructions_files/c63611dac2.css" media="all" rel="stylesheet">
+  <script src="./Instructions_files/script.js" defer="true"></script>
+</head>
+
+  <body>
+    <div id="container" class="full">
+      <section class="head">
+        <header>
+          
+          <h1>Dog Fortune Teller</h1>
+        </header>
+      </section>
+      <section class="main">
+        <section>
+          <article>
+  
+<p>This is part 2 of a website development project in which, you will be practicing the HTML, CSS, and JavaScript that we learned in lecture.</p>
+
+<p>For <strong>Part 1</strong>, you implemented the static look and feel of a <a href="https://www.buzzfeed.com/">Buzzfeed</a>-style personality quiz.
+  For this assignment, this part is already done.</p>
+
+<p>For <strong>Part 2</strong>, you will add behavior and functionality to the above page using javascript.</p>
+
+<hr>
+
+<section class="part">
+  <h2 id="part-1-personality-quiz-indexhtml">Part 1: Personality quiz <code class="highlighter-rouge">index.html</code></h2>
+
+  <p>For Part 1, you created a personality quiz called “Adopt A Dog And We’ll Reveal A Deep Truth About You.”</p>
+
+  <p>For part 2 you are expected to make changes in script.js and some minor changes to index.html and style.css. These files descriptions are as follows:</p>
+  <ul>
+    <li><code class="highlighter-rouge">index.html</code>: Most of the HTML is written for you, but you will likely need to make some modifications for the mobile layout and the JavaScript.</li>
+    <li><code class="highlighter-rouge">style.css</code>: A lot of the CSS is already written for you in <code class="highlighter-rouge">provided-style.css</code>, but you will need to make some modifications for all parts of the assignment. Please make your CSS changes in <code class="highlighter-rouge">style.css</code> and not <code class="highlighter-rouge">provided-style.css</code>, so that the TAs have an easier time grading.</li>
+    <li><code class="highlighter-rouge">script.js</code>: Write your JavaScript here.</li>
+  </ul>
+
+  <h3 id="overall-appearance-and-behavior">Overall appearance and behavior</h3>
+
+  <p>The following video shows the look and behavior of the website implement.</p>
+  <iframe src="https://drive.google.com/file/d/0BxtKIz3gISunTUhvY0c2dG1DbzQ/preview?resourcekey=0-rH-KCh2rTHPPtlT_8G6C2Q" width="640" height="480" allow="autoplay"></iframe>
+  <p>One detail that is hard to see in the video:</p>
+  <ul>
+    <li>After the look is completed (i.e. after all three questions have been answered), it should <em>not</em> be possible to change your answer anymore.</li>
+  </ul>
+
+
+
+  <h2 id="quiz-behavior">App behavior</h2>
+
+  <p>This web page is a 3-question personality quiz. Write the code necessary to implement the quiz behavior as detailed below.</p>
+
+  <p>Even though you will mostly be writing JavaScript for this part, you may need to also update the HTML or CSS in order to implement the behavior as described.</p>
+
+  <p><strong>Dataset Attributes</strong></p>
+
+  <p>Note that you should take advantage of the <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes">dataset attributes</a> added to the HTML elements in <code class="highlighter-rouge">index.html</code>:</p>
+  <ul>
+    <li><code class="highlighter-rouge">data-choice-id</code>: Maps to which quiz result the choice should “count” for, as defined in <code class="highlighter-rouge">constants.js</code>. See details below for scoring and what to do if there are ties.</li>
+    <li><code class="highlighter-rouge">data-question-id</code>: Maps to the question number: one, two, and three.</li>
+  </ul>
+
+  <p>You can access these attributes in JavaScript by using:</p>
+  <ul>
+    <li>element<code class="highlighter-rouge">.dataset.choiceId</code></li>
+    <li>element<code class="highlighter-rouge">.dataset.questionId</code></li>
+  </ul>
+
+  <p>And you can select these attributes via CSS selectors like the following:</p>
+  <ul>
+    <li><code class="highlighter-rouge">[data-choice-id='blep']</code></li>
+    <li><code class="highlighter-rouge">[data-question-id='two']</code></li>
+  </ul>
+
+  <hr>
+  <p><strong>Clicking an answer</strong></p>
+
+  <p>When the user clicks an answer choice, the answer choices should update in the following way:</p>
+
+  <p><img src="./Instructions_files/hw2-dog-answered.png" class="screenshot"></p>
+  <ul>
+    <li>For the selected item:
+      <ul>
+        <li>The checkbox image should change from unchecked to checked</li>
+        <li>Background color is <code class="highlighter-rouge">#cfe3ff</code></li>
+        <li>The checked image is <code class="highlighter-rouge">images/checked.png</code></li>
+      </ul>
+    </li>
+    <li>For the unchosen items:
+      <ul>
+        <li>They should be made semi-transparent by setting their <code class="highlighter-rouge">opacity: 0.6;</code></li>
+        <li>Note that only the unchosen items <em>for this question</em> should change style.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><strong>Changing an answer</strong></p>
+
+  <p>If the user has not completed the quiz (i.e. there is at least one unanswered question), they should be able to change their answer to a question by clicking a different answer.</p>
+
+  <p>After the user has answered every question, the answer choices should lock and it should no longer be possible to change an answer, until the user clicks “Restart quiz” or refreshes the page.</p>
+
+  <p><strong>Completing the quiz</strong></p>
+
+  <p>After the user has answered all three questions, the quiz is complete.</p>
+
+  <ul>
+    <li>It should not be possible to select another answer after you’ve completed the quiz.
+      <ul>
+        <li>i.e. you click another dog after the quiz is complete, nothing on the page should change.</li>
+      </ul>
+    </li>
+    <li>The page should remain in this “completed” state until the user refreshes the page or clicks “Restart quiz”.</li>
+  </ul>
+
+  <p>The personality results should appear at the bottom of the page, with the personality data that corresponds to the dog, as defined by <code class="highlighter-rouge">constants.js</code>.</p>
+
+  <p>Here is the description of how the personality results should look:</p>
+
+  <p><img src="./Instructions_files/hw2-dog-results.png" class="screenshot"></p>
+  <ul>
+    <li>Result button
+      <ul>
+        <li>Background color is <code class="highlighter-rouge">#cecece</code></li>
+        <li>On hover, the color should change to <code class="highlighter-rouge">#e0e0e0</code>
+<img src="./Instructions_files/hw2-result-hover.png" class="screenshot"></li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><strong>Scoring the quiz</strong></p>
+
+  <p>The <code class="highlighter-rouge">data-choice-id</code> for each answer choice maps to the key name for each possible
+     result in <code class="highlighter-rouge">RESULTS_MAP</code>, stored in <code class="highlighter-rouge">constants.js</code>. 
+     Each key name also has an id asociated with it. This id can be used as integer for scoring purposes as described below.
+     You can access <code class="highlighter-rouge">RESULTS_MAP</code> in <code class="highlighter-rouge">script.js</code> 
+     because <code class="highlighter-rouge">constants.js</code> is included before <code class="highlighter-rouge">script.js</code> 
+     in <code class="highlighter-rouge">index.html</code>.</p>
+
+  <p>When the quiz is complete, you score the quiz by adding the <code class="highlighter-rouge">id</code>s from each answer and then divide by 3. 
+    For example, if a user chooses <code class="highlighter-rouge">blepdog.jpg</code>, <code class="highlighter-rouge">sleepybed.jpg</code>, and 
+    <code class="highlighter-rouge">bleptoy.jpg</code>, the corresponding <code class="highlighter-rouge">id</code>s are
+    (0 + 2 + 0)/3 = 0, so you should show the title and contents from <code class="highlighter-rouge">RESULTS_MAP['blep']</code>.</p>
+
+  <hr>
+  <p><strong>Resetting the quiz</strong></p>
+
+  <p>If the user clicks the “Restart quiz” button, the page should reset to its original state.</p>
+
+  <ul>
+    <li>The answer choices should return to their original appearance before the quiz was complete</li>
+    <li>The personality results should disappear</li>
+    <li>The answer choices should be selectable again, and clicking on a different set of answers should result in showing an updated personality type.</li>
+    <li>The page should look and behave the same as if you had refreshed the page (but you should not actually refresh the page)</li>
+    <li>You should also make the page scroll to the top of the “Pick a pup” element.
+      <ul>
+        <li>You can call <code class="highlighter-rouge">element.scrollIntoView();</code> to do this. See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView">mdn</a> for more details.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p><strong><code class="highlighter-rouge">constants.js</code></strong></p>
+  <ul>
+    <li>This file contains the definition of the object <code class="highlighter-rouge">RESULTS_MAP</code>, which maps the dog type to its result title and description.</li>
+    <li>Because this variable is declared in the global scope, you can access this variable in <code class="highlighter-rouge">script.js</code>.</li>
+    <li>You should <strong>not</strong> have to modify this file to solve the homework.</li>
+  </ul>
+
+  <p><strong><code class="highlighter-rouge">script.js</code></strong></p>
+  <ul>
+    <li>This is the file in which you are expect to implement the quiz behavior.</li>
+    <li>You should define and attach event listeners in this file.</li>
+  </ul>
+
+  <p><strong>Image to personality mapping</strong></p>
+
+  <p>The <code class="highlighter-rouge">RESULTS_MAP</code> is defined in <code class="highlighter-rouge">constants.js</code> and the images are saved in the <code class="highlighter-rouge">images/</code> directory.</p>
+
+  <ul>
+    <li><code class="highlighter-rouge">blep{dog,bed,toy}.jpg</code> corresponds to <code class="highlighter-rouge">blep</code> in <code class="highlighter-rouge">RESULTS_MAP</code></li>
+    <li><code class="highlighter-rouge">happy{dog,bed,toy}.jpg</code> corresponds to <code class="highlighter-rouge">happy</code> in <code class="highlighter-rouge">RESULTS_MAP</code></li>
+    <li><code class="highlighter-rouge">sleeping{dog,bed,toy}.jpg</code> corresponds to <code class="highlighter-rouge">sleeping</code> in <code class="highlighter-rouge">RESULTS_MAP</code></li>
+    <li><code class="highlighter-rouge">dopey{dog,bed,toy}.jpg</code> corresponds to <code class="highlighter-rouge">dopey</code> in <code class="highlighter-rouge">RESULTS_MAP</code></li>
+    <li><code class="highlighter-rouge">burger{dog,bed,toy}.jpg</code> corresponds to <code class="highlighter-rouge">burger</code> in <code class="highlighter-rouge">RESULTS_MAP</code></li>
+    <li><code class="highlighter-rouge">cart{dog,bed,toy}.jpg</code> corresponds to <code class="highlighter-rouge">cart</code> in <code class="highlighter-rouge">RESULTS_MAP</code></li>
+    <li><code class="highlighter-rouge">nerd{dog,bed,toy}.jpg</code> corresponds to <code class="highlighter-rouge">nerd</code> in <code class="highlighter-rouge">RESULTS_MAP</code></li>
+    <li><code class="highlighter-rouge">shy{dog,bed,toy}.jpg</code> corresponds to <code class="highlighter-rouge">shy</code> in <code class="highlighter-rouge">RESULTS_MAP</code></li>
+    <li><code class="highlighter-rouge">sleepy{dog,bed,toy}.jpg</code> corresponds to <code class="highlighter-rouge">sleepy</code> in <code class="highlighter-rouge">RESULTS_MAP</code></li>
+  </ul>
+
+  <p><strong>NOTE</strong>: To make this easier to test, the items for each question are in the order displayed above, 
+    i.e. the first answer of every question maps to <code class="highlighter-rouge">blep</code>, the second answer of 
+    every question maps to <code class="highlighter-rouge">happy</code>, etc. <strong>You should not rely on this 
+      ordering for your homework solution.</strong> Instead, use the dataset attributes as described at the top of 
+      this section.</p>
+
+</section>
+
+
+<section class="part">
+
+  <h2 id="submit">Submit</h2>
+
+  <p>Upload your completed homework to your GitHub repository and turn in the link to your GitHub repository to moodle.</p>
+
+</section>
+
+
+</body></html>
