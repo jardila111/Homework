@@ -112,7 +112,7 @@ function showPersonalityResult() {
   
   resultSection.innerHTML = `
     <h2>Your Dog Personality Type: ${result.title}</h2>
-    <p>${result.description}</p>
+    <p>${result.contents}</p>
     <button id="restart-quiz">Restart quiz</button>
   `;
   
